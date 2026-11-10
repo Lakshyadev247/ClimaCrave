@@ -25,6 +25,12 @@ releases/
 *.apk
 *.exe
 
+# Screenshots & media assets (kept out of source code)
+screenshots/
+*.png
+*.jpg
+*.jpeg
+
 # IDE & OS files
 .vscode/
 .idea/

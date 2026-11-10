@@ -9,7 +9,7 @@
 [![Frontend: Vanilla JS](https://img.shields.io/badge/Frontend-HTML5%20%7C%20CSS3%20%7C%20JS-f7df1e?style=for-the-badge&logo=javascript)](https://developer.mozilla.org)
 
 > ⚠️ **Project Status: Public Beta (v1.0.0-Beta)**  
-> ClimaCrave is currently in public Beta. It bridges real-time atmospheric meteorology with culinary science to solve mealtime decision fatigue. Whether you're experiencing a chilly rainy evening or a scorching summer afternoon, ClimaCrave suggests the most appetitive, nourishing meals tailored to your local environment.
+> ClimaCrave bridges real-time atmospheric meteorology with culinary science to solve mealtime decision fatigue. Whether you are facing a chilly overcast evening or a scorching summer afternoon, ClimaCrave analyzes temperature, humidity, precipitation, and conditions to suggest the most appetitive, nourishing meals for your body.
 
 ---
 
@@ -17,38 +17,20 @@
 
 Have you ever stood in front of your fridge or scrolled through endless food delivery menus, completely unable to decide what to eat? 
 
-**Decision fatigue around food is real.** But more importantly, our cravings and physiological dietary needs are profoundly tied to the atmospheric conditions outside:
+**Decision fatigue around food is real.** But more importantly, our cravings and physiological dietary needs are deeply connected to the weather outside:
 
-1. **Cold, Rainy & Chilly Weather**: Your body expends more energy to maintain core body temperature. It naturally craves warming, calorie-dense comfort foods — steaming broths, hearty stews, roasted root vegetables, and hot spiced teas.
-2. **Hot & Scorching Weather**: High temperatures suppress digestion and increase perspiration. Heavy, greasy foods make you feel sluggish and overheated. Your body craves light, hydrating meals — chilled salads, water-dense fruits, yogurt bowls, and cold refreshments.
-3. **High Humidity & Overcast Days**: Humid air slows sweat evaporation, making metabolism feel heavy. Nutrient-dense, easily digestible meals with clean antioxidants help maintain energy and focus.
+* ❄️ **Cold, Freezing & Chilly Weather**: Your body expends more energy to maintain core temperature. It naturally craves warming, calorie-dense comfort foods — steaming broths, hearty stews, roasted dishes, and thermogenic spices.
+* ☀️ **Hot & Scorching Weather**: High temperatures suppress digestive fire and increase perspiration. Heavy foods make you feel sluggish and overheated. Your body craves light, hydrating meals — chilled salads, water-dense fruits, yogurt bowls, and cold refreshments.
+* 🌧️ **Rainy, Humid & Overcast Days**: Slower sweat evaporation makes metabolism feel heavy. Nutrient-dense, easily digestible meals with clean antioxidants and warm herbal infusions help maintain energy and focus.
 
-**ClimaCrave automates this entire decision process.** Instead of guessing, ClimaCrave instantly reads your live local weather and curates appetizing, nutritious meal recommendations that suit your current climate. 
+**ClimaCrave automates this entire decision process.** Instead of guessing or settling for random junk food, ClimaCrave reads your live local weather and curates appetizing, nutritious meal recommendations that suit your current climate.
 
 Furthermore, ClimaCrave unifies your wellness routine by replacing 3–4 separate apps with one lightweight, private platform:
-* 🌦️ **Live Weather Station** (Real-time temperature, humidity, precipitation, and conditions).
-* 🍽️ **Smart Food Recommendation Engine** (Hybrid rule-based + ML scoring).
-* 🥗 **Interactive Food Diary** (Calorie logging, macro tracking, and portion controls).
-* 💧 **Hydration Tracker** (1-tap water intake logs and daily goal rings).
-* 📜 **Weather-Nutrition Correlation History** (Track how local weather patterns impact your eating habits).
-
----
-
-## 📸 Desktop UI Showcase
-
-| 🌃 1. Night Time Weather & Sky (Tokyo) | 🌅 2. Evening / Sunset Sky (Paris) |
-| :---: | :---: |
-| ![Night Time Weather](screenshots/01-night-sky-tokyo.png) | ![Evening Sunset Sky](screenshots/02-evening-sky-paris.png) |
-| *Deep starry night sky with glowing moon & live night weather card* | *Warm golden-hour sunset gradient with evening atmospheric metrics* |
-
-| 🔍 3. Food Diary Custom Search | 📊 4. Daily Stats (Food & Water Logged) |
-| :---: | :---: |
-| ![Food Diary Live Search](screenshots/03-diary-food-search.png) | ![Stats After Adding Food and Water](screenshots/04-stats-food-and-water.png) |
-| *Instant food search with calorie count, macro cards & 1-click logging* | *Comprehensive nutrition summary: total calories, macros & water ring* |
-
-### 🍽️ 5. City-Adaptive Food Recommendations
-![City Food Recommendations](screenshots/05-food-recommendations-city.png)
-*Curated recommendation cards tailored to the current city's weather, complete with food photos, heat tags, and nutritional breakdown.*
+1. 🌦️ **Live Weather Station**: Real-time temperature, humidity, precipitation, wind, UV index, and atmospheric metrics.
+2. 🍽️ **Smart Food Recommendation Engine**: Hybrid rule-based heuristics blended with local Machine Learning scoring.
+3. 🥗 **Interactive Food Diary**: Calorie logging, macronutrient breakdown (protein, carbs, fat), and flexible portion sizing.
+4. 💧 **Hydration Tracker**: 1-tap water intake logs and daily goal rings.
+5. 📜 **Weather-Nutrition Correlation History**: Track how weather patterns correlate with your daily nutrition.
 
 ---
 
@@ -61,7 +43,7 @@ Furthermore, ClimaCrave unifies your wellness routine by replacing 3–4 separat
 * **Alternative Provider Support**: Seamlessly switch to OpenWeatherMap, WeatherAPI, Tomorrow.io, Visual Crossing, or custom API endpoints in Settings if you prefer your own keys.
 
 ### 🧠 2. Hybrid Recommendation Engine (Rules + Machine Learning)
-* **Multi-Factor Atmospheric Analysis**: Evaluates 4 distinct weather variables:
+* **Multi-Factor Atmospheric Analysis**: Evaluates 4 distinct atmospheric dimensions:
   * 🌡️ **Temperature**: Ranks hot comfort soups vs chilled refreshing items.
   * 💧 **Humidity**: Adjusts hydration scores and heavy/light digestive balance.
   * 🌧️ **Precipitation**: Triggers rainy-day comfort food heuristics (pakoras, hot stews, tea).
@@ -77,7 +59,7 @@ Furthermore, ClimaCrave unifies your wellness routine by replacing 3–4 separat
 
 ### 🥗 4. Food Diary & Interactive Nutrition Search
 * **Built-in Multi-Cuisine Food Database**: Pre-loaded with hundreds of popular meals across Indian, Asian, and Continental cuisines.
-* **Live Custom Food Search**: Type any ingredient or dish name to pull up instant nutritional profiles (calories, protein, carbohydrates, and fats).
+* **Live Custom Food Search**: Type any ingredient or dish name (e.g. *chicken*, *paneer*, *salad*) to pull up instant nutritional profiles (calories, protein, carbohydrates, and fats).
 * **Flexible Portion Controls**:
   * 🥣 **By Portion**: 0.5x, 1x, 1.5x, 2x multipliers.
   * ⚖️ **By Grams**: Granular gram adjustment with +/- buttons.
@@ -110,6 +92,32 @@ Download pre-built standalone packages directly from **[GitHub Releases](../../r
 
 * **`start.bat`**: Double-click to start ClimaCrave. It automatically verifies if Node.js is installed. If missing, it will **automatically download a portable Node.js runtime** from nodejs.org so anyone can run it with one click!
 * **`stop.bat`**: Double-click to cleanly terminate all background server processes running on port 3000.
+
+---
+
+## 🏗️ Clean Architecture Overview
+
+```text
+ClimaCrave/
+├── index.html              # Core application entry point & semantic markup
+├── css/
+│   └── style.css           # Glassmorphism design system & responsive layout
+├── js/
+│   └── script.js           # Client application logic, recommendation engine & food database
+├── ml/
+│   ├── model.json          # Pre-trained weather-food scoring weights
+│   ├── train_model.py      # Python model training script (scikit-learn / numpy)
+│   └── README.md           # Machine learning documentation
+├── server.js               # Zero-dependency Node.js server with native SQLite persistence
+├── package.json            # Application metadata & engine specifications
+├── requirements.txt        # Runtime and optional Python dependencies documentation
+├── start.bat               # 1-click launcher with auto Node.js downloader
+├── stop.bat                # 1-click server stopper
+├── .gitignore              # Clean Git ignore rules (binaries & media excluded)
+├── .gitattributes          # Git line ending normalization
+├── LICENSE                 # MIT Open-Source License
+└── README.md               # Master documentation
+```
 
 ---
 
