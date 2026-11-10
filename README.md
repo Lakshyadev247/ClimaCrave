@@ -1,16 +1,15 @@
 # ClimaCrave 🌤️🍽️
 ### Weather-Adaptive Food Recommendation System & Personal Nutrition Companion
 
-[![Status: Public Beta](https://img.shields.io/badge/Status-Public%20Beta-orange?style=for-the-badge)](https://github.com/Lakshyadev247/ClimaCrave/releases)
+[![Status: Public Beta](https://img.shields.io/badge/Status-Public_Beta-orange?style=for-the-badge)](https://github.com/Lakshyadev247/ClimaCrave/releases)
 [![Version: v1.0.0-beta](https://img.shields.io/badge/Version-v1.0.0--beta-blue?style=for-the-badge)](https://github.com/Lakshyadev247/ClimaCrave/releases)
-[![Platform: Android | Windows | Web](https://img.shields.io/badge/Platform-Android%20%7C%20Windows%20%7C%20Web-blue?style=for-the-badge)](https://github.com/Lakshyadev247/ClimaCrave/releases)
-[![Stack: HTML5 / CSS3 / Vanilla JS](https://img.shields.io/badge/Built%20With-HTML5%20%7C%20CSS3%20%7C%20Vanilla%20JS-f7df1e?style=for-the-badge&logo=javascript)](https://developer.mozilla.org)
-[![Zero Dependencies](https://img.shields.io/badge/Dependencies-Zero%20(No%20npm%20needed)-brightgreen?style=for-the-badge)](https://github.com/Lakshyadev247/ClimaCrave)
-[![Offline Capable](https://img.shields.io/badge/Offline-100%25%20Capable-purple?style=for-the-badge)](https://github.com/Lakshyadev247/ClimaCrave)
+[![Platform: Android | Windows | Web](https://img.shields.io/badge/Platform-Android_|_Windows_|_Web-blue?style=for-the-badge)](https://github.com/Lakshyadev247/ClimaCrave/releases)
+[![Stack: HTML5 / CSS3 / Vanilla JS](https://img.shields.io/badge/Built_With-HTML5_|_CSS3_|_JavaScript-f7df1e?style=for-the-badge&logo=javascript)](https://developer.mozilla.org)
+[![Database: SQLite](https://img.shields.io/badge/Database-SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://sqlite.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
 > ⚠️ **Project Status: Public Beta (v1.0.0-Beta)**  
-> ClimaCrave is a lightweight, zero-dependency weather-adaptive food recommendation system. It bridges real-time atmospheric meteorology with culinary science to solve mealtime decision fatigue. Whether you are facing a chilly overcast evening or a scorching summer afternoon, ClimaCrave analyzes temperature, humidity, precipitation, and conditions to suggest the most appetitive, nourishing meals for your body.
+> ClimaCrave bridges real-time atmospheric meteorology with culinary science to solve mealtime decision fatigue. Whether you are facing a chilly overcast evening or a scorching summer afternoon, ClimaCrave analyzes temperature, humidity, precipitation, and conditions to suggest the most appetitive, nourishing meals for your body.
 
 ---
 
@@ -106,9 +105,8 @@ Furthermore, ClimaCrave unifies your wellness routine by replacing 3–4 separat
 * **Visual Progress Ring**: Live percentage completion bar toward your custom daily water target.
 
 ### 💾 6. 100% Local-First & Private Persistence
-* **Zero npm Packages Required**: The entire web app runs purely on browser standards.
-* **Browser LocalStorage**: Works out of the box with zero database setup required.
-* **Optional Node.js + SQLite Backend**: For users who want a local desktop database file, an optional `server.js` using Node's native `node:sqlite` is included.
+* **SQLite Database (`climacrave.sqlite`)**: All accounts, settings, food diaries, and water intake are saved directly in an SQLite database file.
+* **Device Storage Fallback**: Standalone and mobile installations store state directly on the device with zero cloud tracking.
 * **100% Privacy Focused**: No telemetry, no third-party tracking, and no external accounts. Your personal wellness logs stay on your device.
 
 ---
@@ -127,36 +125,45 @@ Download pre-built standalone packages directly from **[GitHub Releases](../../r
 
 ## ⚡ How to Run
 
-### Method 1: Instant Browser Launch (Zero Installation Required!)
-Simply double-click **`index.html`** in any web browser (Chrome, Edge, Firefox, Brave, Safari).
-* 0 installations needed.
-* 0 npm commands needed.
-* 0 server configuration needed.
-* Everything works immediately using browser local storage!
+### Method 1: Windows Standalone Desktop App (Easiest)
+Simply download and double-click **`ClimaCrave.exe`** from [Releases](../../releases/latest).
+* Launches in a native desktop window (Microsoft WebView2).
+* Zero terminal or setup needed.
+* All data is saved automatically in `%APPDATA%\ClimateCrave\`.
 
 ---
 
-### Method 2: 1-Click Windows Launcher
-Double-click **`start.bat`** on Windows.
-* Opens ClimaCrave directly in a dedicated desktop window.
-* When finished, double-click **`stop.bat`** to exit.
+### Method 2: Android Mobile App
+Download and install **`ClimaCrave.apk`** on your Android phone from [Releases](../../releases/latest).
+* Optimized touch UI with fixed 4-tab bottom navigation bar.
+* 100% standalone and offline capable with local device storage.
 
 ---
 
-### Method 3: Optional Local Node Server (For Developers)
-If you wish to use the optional local SQLite database backend:
+### Method 3: 1-Click PC Launcher (For Source Code)
+Double-click **`start.bat`** in the project folder.
+* Automatically verifies the local server environment.
+* Boots the local server and opens `http://localhost:3000` in your default browser.
+* When finished, double-click **`stop.bat`** to cleanly shut down.
+
+---
+
+### Method 4: Terminal Command (Developers)
 ```bash
+# Start the local server
 node server.js
+
+# Open in your browser:
+# http://localhost:3000
 ```
-Then open `http://localhost:3000`. Zero external npm packages required!
 
 ---
 
-## 🏗️ Architecture Overview
+## 🏗️ Clean Architecture Overview
 
 ```text
 ClimaCrave/
-├── index.html              # Pure HTML5 application entry point
+├── index.html              # Core application entry point & semantic markup
 ├── css/
 │   └── style.css           # Glassmorphism design system & responsive layout
 ├── js/
@@ -165,7 +172,7 @@ ClimaCrave/
 │   ├── model.json          # Pre-trained weather-food scoring weights
 │   ├── train_model.py      # Optional Python model training script (scikit-learn / numpy)
 │   └── README.md           # Machine learning documentation
-├── server.js               # Optional local server with native SQLite persistence
+├── server.js               # Local server with native SQLite persistence
 ├── package.json            # Application metadata
 ├── requirements.txt        # Runtime & optional Python dependencies notes
 ├── start.bat               # 1-click launcher for Windows
