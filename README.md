@@ -13,6 +13,41 @@
 
 ---
 
+## 📸 UI Showcase (Desktop & Mobile)
+
+### 📱 Android Phone (Standalone APK)
+
+| 🌃 Night Weather (Tokyo) | ❄️ Freezing Weather (Canada) | 📊 Detailed Parameters |
+| :---: | :---: | :---: |
+| <img src="https://raw.githubusercontent.com/Lakshyadev247/ClimaCrave/assets/screenshots/phone/01-phone-weather-tokyo.jpg" width="240" alt="Tokyo Evening Weather" /> | <img src="https://raw.githubusercontent.com/Lakshyadev247/ClimaCrave/assets/screenshots/phone/04-phone-freezing-canada.jpg" width="240" alt="Canada Freezing Weather" /> | <img src="https://raw.githubusercontent.com/Lakshyadev247/ClimaCrave/assets/screenshots/phone/03-phone-weather-parameters.jpg" width="240" alt="Detailed Weather Parameters" /> |
+| *Tokyo evening overcast & glass navigation* | *Canada -3°C freezing conditions* | *Humidity, pressure, UV, & visibility* |
+
+| 🍽️ Food Recommendations | 🔍 Food Diary (Chicken Search) | 📈 Daily Nutrition Stats |
+| :---: | :---: | :---: |
+| <img src="https://raw.githubusercontent.com/Lakshyadev247/ClimaCrave/assets/screenshots/phone/02-phone-recommendations-poutine.jpg" width="240" alt="Weather Food Recommendations" /> | <img src="https://raw.githubusercontent.com/Lakshyadev247/ClimaCrave/assets/screenshots/phone/05-phone-diary-search-chicken.jpg" width="240" alt="Food Diary Chicken Search" /> | <img src="https://raw.githubusercontent.com/Lakshyadev247/ClimaCrave/assets/screenshots/phone/06-phone-stats-chicken-tikka.jpg" width="240" alt="Daily Nutrition Stats" /> |
+| *Poutine & ML score breakdown* | *Instant multi-cuisine search for Chicken* | *Calories, macros, & hydration log* |
+
+---
+
+### 💻 Windows Desktop (Standalone EXE)
+
+| 🌃 Night Time Weather & Sky (Tokyo) | 🌅 Evening / Sunset Sky (Paris) |
+| :---: | :---: |
+| <img src="https://raw.githubusercontent.com/Lakshyadev247/ClimaCrave/assets/screenshots/desktop/01-night-sky-tokyo.png" width="420" alt="Night Time Weather" /> | <img src="https://raw.githubusercontent.com/Lakshyadev247/ClimaCrave/assets/screenshots/desktop/02-evening-sky-paris.png" width="420" alt="Evening Sunset Sky" /> |
+| *Deep starry night sky with glowing moon* | *Warm golden-hour sunset gradient* |
+
+| 🔍 Food Diary Custom Search | 📊 Daily Stats (Food & Water Logged) |
+| :---: | :---: |
+| <img src="https://raw.githubusercontent.com/Lakshyadev247/ClimaCrave/assets/screenshots/desktop/03-diary-food-search.png" width="420" alt="Food Diary Live Search" /> | <img src="https://raw.githubusercontent.com/Lakshyadev247/ClimaCrave/assets/screenshots/desktop/04-stats-food-and-water.png" width="420" alt="Stats After Adding Food and Water" /> |
+| *Instant search with calorie counts & macros* | *Comprehensive nutrition summary & water ring* |
+
+| 🍽️ City-Adaptive Food Recommendations |
+| :---: |
+| <img src="https://raw.githubusercontent.com/Lakshyadev247/ClimaCrave/assets/screenshots/desktop/05-food-recommendations-city.png" width="550" alt="City Food Recommendations" /> |
+| *Curated recommendation cards tailored to city weather conditions* |
+
+---
+
 ## 💡 Why ClimaCrave? The Problem It Solves & Why It's Helpful
 
 Have you ever stood in front of your fridge or scrolled through endless food delivery menus, completely unable to decide what to eat? 
