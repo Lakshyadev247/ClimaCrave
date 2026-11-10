@@ -1,158 +1,138 @@
 # ClimaCrave 🌤️🍽️
 ### Weather-Adaptive Food Recommendation System & Personal Nutrition Companion
 
-[![Status: Beta](https://img.shields.io/badge/Status-Beta%20(Active%20Testing)-orange?style=for-the-badge)](https://github.com/Lakshyadev247/ClimaCrave/releases)
-[![Version: v3.4-beta](https://img.shields.io/badge/Version-v3.4--beta-blue?style=for-the-badge)](https://github.com/Lakshyadev247/ClimaCrave/releases)
-[![Platform: Android & Windows & Web](https://img.shields.io/badge/Platform-Android%20%7C%20Windows%20%7C%20Web-blue?style=for-the-badge)](https://github.com/Lakshyadev247/ClimaCrave/releases)
+[![Status: Public Beta](https://img.shields.io/badge/Status-Public%20Beta-orange?style=for-the-badge)](https://github.com/Lakshyadev247/ClimaCrave/releases)
+[![Version: v1.0.0-beta](https://img.shields.io/badge/Version-v1.0.0--beta-blue?style=for-the-badge)](https://github.com/Lakshyadev247/ClimaCrave/releases)
+[![Platform: Android | Windows | Web](https://img.shields.io/badge/Platform-Android%20%7C%20Windows%20%7C%20Web-blue?style=for-the-badge)](https://github.com/Lakshyadev247/ClimaCrave/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 [![Node.js: 22+](https://img.shields.io/badge/Node.js-22%2B%20Native%20SQLite-339933?style=for-the-badge&logo=nodedotjs)](https://nodejs.org)
-[![Frontend: Glassmorphic UI](https://img.shields.io/badge/Frontend-HTML5%20%7C%20CSS3%20%7C%20JS-f7df1e?style=for-the-badge&logo=javascript)](https://developer.mozilla.org)
+[![Frontend: Vanilla JS](https://img.shields.io/badge/Frontend-HTML5%20%7C%20CSS3%20%7C%20JS-f7df1e?style=for-the-badge&logo=javascript)](https://developer.mozilla.org)
 
-> ⚠️ **Project Status: Public Beta (Active Testing & Development)**  
-> ClimaCrave is currently in public Beta. It dynamically pairs atmospheric metrics (temperature, humidity, precipitation, and sky conditions) with smart food recommendations. Available as a **standalone Android APK**, **standalone Windows Desktop app**, or **local lightweight web app with zero external npm dependencies**. Community feedback and suggestions are warmly welcomed!
+> ⚠️ **Project Status: Public Beta (v1.0.0-Beta)**  
+> ClimaCrave is currently in public Beta. It bridges real-time atmospheric meteorology with culinary science to solve mealtime decision fatigue. Whether you're experiencing a chilly rainy evening or a scorching summer afternoon, ClimaCrave suggests the most appetitive, nourishing meals tailored to your local environment.
 
 ---
 
-## 📸 UI Showcase (Desktop & Mobile)
+## 💡 Why ClimaCrave? The Problem It Solves & Why It's Helpful
 
-| 💻 Windows Desktop (Standalone EXE) | 📱 Android Phone (Standalone APK) |
+Have you ever stood in front of your fridge or scrolled through endless food delivery menus, completely unable to decide what to eat? 
+
+**Decision fatigue around food is real.** But more importantly, our cravings and physiological dietary needs are profoundly tied to the atmospheric conditions outside:
+
+1. **Cold, Rainy & Chilly Weather**: Your body expends more energy to maintain core body temperature. It naturally craves warming, calorie-dense comfort foods — steaming broths, hearty stews, roasted root vegetables, and hot spiced teas.
+2. **Hot & Scorching Weather**: High temperatures suppress digestion and increase perspiration. Heavy, greasy foods make you feel sluggish and overheated. Your body craves light, hydrating meals — chilled salads, water-dense fruits, yogurt bowls, and cold refreshments.
+3. **High Humidity & Overcast Days**: Humid air slows sweat evaporation, making metabolism feel heavy. Nutrient-dense, easily digestible meals with clean antioxidants help maintain energy and focus.
+
+**ClimaCrave automates this entire decision process.** Instead of guessing, ClimaCrave instantly reads your live local weather and curates appetizing, nutritious meal recommendations that suit your current climate. 
+
+Furthermore, ClimaCrave unifies your wellness routine by replacing 3–4 separate apps with one lightweight, private platform:
+* 🌦️ **Live Weather Station** (Real-time temperature, humidity, precipitation, and conditions).
+* 🍽️ **Smart Food Recommendation Engine** (Hybrid rule-based + ML scoring).
+* 🥗 **Interactive Food Diary** (Calorie logging, macro tracking, and portion controls).
+* 💧 **Hydration Tracker** (1-tap water intake logs and daily goal rings).
+* 📜 **Weather-Nutrition Correlation History** (Track how local weather patterns impact your eating habits).
+
+---
+
+## 📸 Desktop UI Showcase
+
+| 🌃 1. Night Time Weather & Sky (Tokyo) | 🌅 2. Evening / Sunset Sky (Paris) |
 | :---: | :---: |
-| ![Desktop Weather & Recommendations](screenshots/02-desktop-main-weather.png) | ![Mobile Weather Tab](screenshots/06-mobile-weather-tab.png) |
-| *Live weather card, auto-location, and hybrid food recommendations* | *Touch-friendly mobile UI with glassmorphic bottom navigation* |
+| ![Night Time Weather](screenshots/01-night-sky-tokyo.png) | ![Evening Sunset Sky](screenshots/02-evening-sky-paris.png) |
+| *Deep starry night sky with glowing moon & live night weather card* | *Warm golden-hour sunset gradient with evening atmospheric metrics* |
 
-<details>
-<summary><b>🔍 Click to view more screenshots (Food Details, Daily Tracker & Settings)</b></summary>
+| 🔍 3. Food Diary Custom Search | 📊 4. Daily Stats (Food & Water Logged) |
+| :---: | :---: |
+| ![Food Diary Live Search](screenshots/03-diary-food-search.png) | ![Stats After Adding Food and Water](screenshots/04-stats-food-and-water.png) |
+| *Instant food search with calorie count, macro cards & 1-click logging* | *Comprehensive nutrition summary: total calories, macros & water ring* |
 
-| Feature | Preview |
-| :--- | :---: |
-| **🍽️ Food Details & Nutritional Breakdown** | ![Food Details](screenshots/04-desktop-food-detail.png) |
-| **📊 Food Diary & Daily Hydration Tracker** | ![Food Tracker](screenshots/05-desktop-tracker.png) |
-| **⚙️ Settings & Weather Provider Configuration** | ![Settings](screenshots/03-desktop-settings-api.png) |
-| **📱 Mobile Food Diary & Calorie Tracker Tab** | ![Mobile Tracker](screenshots/07-mobile-tracker-tab.png) |
-| **📱 Mobile Saved Favorites & History Tab** | ![Mobile Saved](screenshots/08-mobile-saved-tab.png) |
-| **📱 Mobile Settings & Clean Glass Controls** | ![Mobile Settings](screenshots/09-mobile-settings-tab.png) |
-
-</details>
+### 🍽️ 5. City-Adaptive Food Recommendations
+![City Food Recommendations](screenshots/05-food-recommendations-city.png)
+*Curated recommendation cards tailored to the current city's weather, complete with food photos, heat tags, and nutritional breakdown.*
 
 ---
 
-## 📖 The Story Behind ClimaCrave
+## 🌟 Comprehensive Feature Breakdown
 
-Have you ever noticed how your appetite naturally changes with the weather? On a cold, rainy day, nothing beats a hot, steaming bowl of soup or spicy stew. On a sweltering summer afternoon, the last thing you want is a heavy roast; your body craves crisp salads, juicy fruits, and chilled hydration.
+### 🌦️ 1. Zero-Config Weather Engine
+* **Open-Meteo Integration**: Uses the free, open-source Open-Meteo public API out of the box with **zero API keys or configuration required**.
+* **Intelligent Auto-Location**: Detects your location on launch with 1-click GPS Geolocation, reverse geocodes the city name, and falls back to IP-based location if GPS is unavailable.
+* **Favorite City Bookmark (☆)**: Bookmark any city in the world as your default location for instant weather on launch.
+* **Alternative Provider Support**: Seamlessly switch to OpenWeatherMap, WeatherAPI, Tomorrow.io, Visual Crossing, or custom API endpoints in Settings if you prefer your own keys.
 
-**ClimaCrave was born to bridge meteorology and gastronomy.**
+### 🧠 2. Hybrid Recommendation Engine (Rules + Machine Learning)
+* **Multi-Factor Atmospheric Analysis**: Evaluates 4 distinct weather variables:
+  * 🌡️ **Temperature**: Ranks hot comfort soups vs chilled refreshing items.
+  * 💧 **Humidity**: Adjusts hydration scores and heavy/light digestive balance.
+  * 🌧️ **Precipitation**: Triggers rainy-day comfort food heuristics (pakoras, hot stews, tea).
+  * ☁️ **Sky Condition**: Calibrates energizing vs cozy comfort meals.
+* **Embedded Machine Learning Model (`ml/model.json`)**: Employs a pre-trained decision scoring matrix that evaluates meal compatibility scores alongside dietary rules.
 
-Rather than flipping through generic food delivery apps or struggling to decide what to cook, ClimaCrave instantly reads your local atmospheric conditions — temperature, humidity, wind speed, and precipitation — and pairs them with an intelligent recommendation engine to serve up curated, satisfying food suggestions.
+### 🎨 3. Dynamic Atmospheric Sky Themes
+* **Time-of-Day Gradients**: Real-time atmospheric color transitions reflecting:
+  * 🌅 **Morning**: Warm peach-to-cyan sunrise hues.
+  * ☀️ **Afternoon**: Crisp blue daylight sky or warm heatwave glow.
+  * 🌆 **Evening**: Rich golden-hour purple-pink sunset.
+  * 🌃 **Night**: Deep midnight indigo canvas with twinkling stars and moon.
 
-### What Makes ClimaCrave Special
+### 🥗 4. Food Diary & Interactive Nutrition Search
+* **Built-in Multi-Cuisine Food Database**: Pre-loaded with hundreds of popular meals across Indian, Asian, and Continental cuisines.
+* **Live Custom Food Search**: Type any ingredient or dish name to pull up instant nutritional profiles (calories, protein, carbohydrates, and fats).
+* **Flexible Portion Controls**:
+  * 🥣 **By Portion**: 0.5x, 1x, 1.5x, 2x multipliers.
+  * ⚖️ **By Grams**: Granular gram adjustment with +/- buttons.
+  * ⚡ **Quick Presets**: 1 Bowl (150g), 1 Plate (200g), 1 Katori (100g), 1 Glass (250ml).
 
-- **Context-Aware Nutrition**: Recommends meals based on real-time atmospheric science and culinary comfort psychology.
-- **Zero Configuration**: Uses the free, open-source Open-Meteo public API out of the box with zero API keys required.
-- **Full Privacy & Local-First**: Works 100% locally with zero tracking. User accounts, settings, food diaries, and water logs are stored in your own local SQLite database or directly on your phone.
-- **Runs Everywhere**: Use it as a clean local web app, a standalone native Windows desktop application, or an installable Android APK.
+### 💧 5. Daily Hydration Tracker
+* **1-Tap Quick Logs**: Log water effortlessly with buttons for `+1 Glass (250ml)`, `+500ml`, and `+1 Bottle (1L)`.
+* **Visual Progress Ring**: Live percentage completion bar toward your custom daily water target.
+
+### 💾 6. Dual-Mode Local-First Persistence
+* **Zero-Dependency SQLite Backend**: When running with the included Node.js server, data is saved in a local `climacrave.sqlite` database using Node 22's native `node:sqlite` engine (**zero npm packages to install**).
+* **Client-Side Fallback**: If running without a server (standalone HTML/APK), it automatically uses device `localStorage`.
+* **100% Privacy Focused**: No telemetry, no third-party tracking, and no external accounts. Your personal wellness logs stay on your device.
 
 ---
 
 ## 📥 Download Ready-to-Use Apps (No Setup Required!)
 
-If you just want to run ClimaCrave on your computer or phone without touching code, download the pre-built packages directly from **[GitHub Releases](../../releases/latest)**:
+Download pre-built standalone packages directly from **[GitHub Releases](../../releases/latest)**:
 
-| Platform | Download | Description |
+| Platform | Package | Description |
 | :--- | :--- | :--- |
-| 📱 **Android** | [**`ClimaCrave.apk`**](../../releases/latest) | Standalone APK for Android phones & tablets (Target SDK 35). Runs **100% offline** with offline glassmorphism UI, bottom navigation bar, and zero external permissions. |
+| 📱 **Android** | [**`ClimaCrave.apk`**](../../releases/latest) | Standalone APK for Android phones & tablets (Target SDK 35). Runs **100% offline** with bottom glass navigation and zero external permissions. |
 | 💻 **Windows Desktop** | [**`ClimaCrave.exe`**](../../releases/latest) | Portable single-executable desktop app powered by Microsoft WebView2. Clean execution with isolated `%APPDATA%\ClimateCrave\` data storage. |
 | 📦 **Windows ZIP** | [**`ClimaCrave.zip`**](../../releases/latest) | Portable standalone desktop package in a portable archive. |
 
 ---
 
-## 🌟 Key Features
+## ⚡ 1-Click Launchers (For PC Users & Developers)
 
-* 🌦️ **Zero-Config Open-Meteo Public API**: Uses the free, open-source Open-Meteo public API out of the box with zero API keys required! Still supports OpenWeatherMap, WeatherAPI, Tomorrow.io, Visual Crossing, or custom APIs if desired.
-* 📍 **Intelligent Auto-Location Detection**: Automatically detects your location on app launch (if no default city is set) or anytime by clicking the 📍 locate button. Uses browser Geolocation with reverse geocoding and an IP-based fallback if GPS is unavailable.
-* 🧠 **Hybrid Adaptive Recommendation Engine**: Blends rule-based comfort heuristics with a local trained Machine Learning model (`ml/model.json`) evaluating temperature, humidity, wind, and sky conditions.
-* 📊 **Comprehensive Wellness Tracking**:
-  * 🥗 **Food Diary**: Log meals with calorie and nutrient breakdown.
-  * 💧 **Water Tracker**: Real-time hydration monitoring with custom daily targets.
-  * ⭐ **Saved Items**: Bookmark favorite meals and recipes for quick access.
-  * 📜 **Weather History**: Track how weather patterns correlate with your dining habits over time.
-* 💾 **Dual-Mode Persistence Architecture**: Local Node.js + SQLite (`climacrave.sqlite`) backend when available, with seamless client-side localStorage fallback when running standalone.
-* 🎨 **Modern Glassmorphic UI**: High-contrast, clean visual design with responsive layouts across mobile, tablet, and desktop screens.
-
----
-
-## ⚡ 1-Click Launchers (For Windows Users)
-
-* **`start.bat`**: Double-click to launch ClimaCrave. It automatically verifies if Node.js is installed. If missing, it will **automatically download a portable Node.js runtime** from nodejs.org so anyone can run it without manual setup!
+* **`start.bat`**: Double-click to start ClimaCrave. It automatically verifies if Node.js is installed. If missing, it will **automatically download a portable Node.js runtime** from nodejs.org so anyone can run it with one click!
 * **`stop.bat`**: Double-click to cleanly terminate all background server processes running on port 3000.
 
 ---
 
-## 🏗️ Architecture Overview
-
-```text
-ClimaCrave/
-├── index.html              # Core application entry point & semantic markup
-├── css/
-│   └── style.css           # Glassmorphism design system & responsive layout
-├── js/
-│   └── script.js           # Client application logic, recommendation engine & food database
-├── ml/
-│   ├── model.json          # Pre-trained weather-food scoring weights
-│   ├── train_model.py      # Python model training script (scikit-learn / numpy)
-│   └── README.md           # Machine learning documentation
-├── screenshots/            # UI showcase gallery for desktop and mobile
-├── server.js               # Zero-dependency Node.js server with native SQLite persistence
-├── package.json            # Application metadata & engine specifications
-├── requirements.txt        # Runtime and optional Python dependencies documentation
-├── start.bat               # 1-click launcher with auto Node.js downloader
-├── stop.bat                # 1-click server stopper
-├── .gitignore              # Clean Git ignore rules (binaries & temp files excluded)
-├── .gitattributes          # Git line ending normalization
-├── LICENSE                 # MIT Open-Source License
-└── README.md               # Master documentation
-```
-
-### Technical Highlights
-1. **Frontend**: Plain HTML5, CSS3, and modern Vanilla JavaScript (ES6+). Zero heavy frontend frameworks means instant cold-starts and low memory usage.
-2. **Backend**: Node.js 22.5+ utilizing the native `node:sqlite` engine. Requires **zero external npm packages** (`npm install` is not even needed).
-3. **Database**: SQLite stores user accounts (hashed credentials), preferences, food diary entries, water tracking, and weather logs.
-4. **Desktop Wrapper**: Standalone Windows executable packaged with embedded WebView2 runtime for native app performance.
-5. **Mobile Build**: Android APK built for modern devices (Target SDK 35) with optimized mobile touch navigation and glass popups.
-
----
-
-## 🚀 Developer Quick Start Guide
+## 🚀 Running From Source (Step-by-Step)
 
 ### Prerequisites
 * **[Node.js 22.5+](https://nodejs.org/)** (Uses Node's built-in `node:sqlite`, zero npm dependencies required!)
 * Any modern web browser (Edge, Chrome, Firefox, Safari)
 
----
+### Quick Start
+```bash
+# 1. Clone the repository
+git clone https://github.com/Lakshyadev247/ClimaCrave.git
+cd ClimaCrave
 
-### Option A: 1-Click Launch (Windows)
-Simply double-click **`start.bat`**.
-- Automatically checks for Node.js (or downloads portable runtime).
-- Boots the server on port 3000.
-- Opens `http://localhost:3000` in your browser.
+# 2. Start the local server
+node server.js
 
----
+# 3. Open in your browser
+# Navigate to http://localhost:3000
+```
 
-### Option B: Command Line (Windows, macOS, Linux)
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/Lakshyadev247/ClimaCrave.git
-   cd ClimaCrave
-   ```
-
-2. Start the local server:
-   ```bash
-   node server.js
-   ```
-
-3. Open your browser and navigate to:
-   ```text
-   http://localhost:3000
-   ```
+*(Or simply double-click **`start.bat`** on Windows!)*
 
 ---
 
@@ -161,40 +141,31 @@ Simply double-click **`start.bat`**.
 If you wish to experiment with or retrain the weather-food recommendation model:
 
 ```bash
-# 1. Create a Python virtual environment (optional)
-python -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-
-# 2. Install Python dependencies
+# 1. Install optional Python requirements
 pip install -r requirements.txt
 
-# 3. Run the training script
+# 2. Run the training script
 python ml/train_model.py
 ```
 This updates `ml/model.json` with new weight vectors for temperature, humidity, wind, and sky condition scores.
 
 ---
 
-## 🤝 Contributing & Feedback
+## 🤝 Contributing & Community Help
 
-Contributions, suggestions, and issue reports are very welcome!
-
-1. **Fork the Repository**
-2. **Create your Feature Branch** (`git checkout -b feature/AmazingFeature`)
-3. **Commit your Changes** (`git commit -m "Add AmazingFeature"`)
-4. **Push to the Branch** (`git push origin feature/AmazingFeature`)
-5. **Open a Pull Request**
+* Found an issue or have an idea for a feature? Open an issue on the [Issues](../../issues) tab!
+* Pull requests are warmly welcomed.
 
 ---
 
 ## 📄 License
 
-Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for more details.
+Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for details.
 
 ---
 
 ## 🙏 Acknowledgements
 
-* [Open-Meteo](https://open-meteo.com/) for providing high-accuracy, free public weather APIs.
-* [Microsoft Edge WebView2](https://developer.microsoft.com/en-us/microsoft-edge/webview2/) for lightweight native desktop application embedding.
+* [Open-Meteo](https://open-meteo.com/) for free, high-accuracy public weather APIs.
+* [Microsoft Edge WebView2](https://developer.microsoft.com/en-us/microsoft-edge/webview2/) for lightweight desktop application embedding.
 * The open-source community for making local-first software possible.
