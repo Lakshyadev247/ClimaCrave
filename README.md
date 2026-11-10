@@ -4,12 +4,13 @@
 [![Status: Public Beta](https://img.shields.io/badge/Status-Public%20Beta-orange?style=for-the-badge)](https://github.com/Lakshyadev247/ClimaCrave/releases)
 [![Version: v1.0.0-beta](https://img.shields.io/badge/Version-v1.0.0--beta-blue?style=for-the-badge)](https://github.com/Lakshyadev247/ClimaCrave/releases)
 [![Platform: Android | Windows | Web](https://img.shields.io/badge/Platform-Android%20%7C%20Windows%20%7C%20Web-blue?style=for-the-badge)](https://github.com/Lakshyadev247/ClimaCrave/releases)
+[![Stack: HTML5 / CSS3 / Vanilla JS](https://img.shields.io/badge/Built%20With-HTML5%20%7C%20CSS3%20%7C%20Vanilla%20JS-f7df1e?style=for-the-badge&logo=javascript)](https://developer.mozilla.org)
+[![Zero Dependencies](https://img.shields.io/badge/Dependencies-Zero%20(No%20npm%20needed)-brightgreen?style=for-the-badge)](https://github.com/Lakshyadev247/ClimaCrave)
+[![Offline Capable](https://img.shields.io/badge/Offline-100%25%20Capable-purple?style=for-the-badge)](https://github.com/Lakshyadev247/ClimaCrave)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
-[![Node.js: 22+](https://img.shields.io/badge/Node.js-22%2B%20Native%20SQLite-339933?style=for-the-badge&logo=nodedotjs)](https://nodejs.org)
-[![Frontend: Vanilla JS](https://img.shields.io/badge/Frontend-HTML5%20%7C%20CSS3%20%7C%20JS-f7df1e?style=for-the-badge&logo=javascript)](https://developer.mozilla.org)
 
 > ⚠️ **Project Status: Public Beta (v1.0.0-Beta)**  
-> ClimaCrave bridges real-time atmospheric meteorology with culinary science to solve mealtime decision fatigue. Whether you are facing a chilly overcast evening or a scorching summer afternoon, ClimaCrave analyzes temperature, humidity, precipitation, and conditions to suggest the most appetitive, nourishing meals for your body.
+> ClimaCrave is a lightweight, zero-dependency weather-adaptive food recommendation system. It bridges real-time atmospheric meteorology with culinary science to solve mealtime decision fatigue. Whether you are facing a chilly overcast evening or a scorching summer afternoon, ClimaCrave analyzes temperature, humidity, precipitation, and conditions to suggest the most appetitive, nourishing meals for your body.
 
 ---
 
@@ -104,9 +105,10 @@ Furthermore, ClimaCrave unifies your wellness routine by replacing 3–4 separat
 * **1-Tap Quick Logs**: Log water effortlessly with buttons for `+1 Glass (250ml)`, `+500ml`, and `+1 Bottle (1L)`.
 * **Visual Progress Ring**: Live percentage completion bar toward your custom daily water target.
 
-### 💾 6. Dual-Mode Local-First Persistence
-* **Zero-Dependency SQLite Backend**: When running with the included Node.js server, data is saved in a local `climacrave.sqlite` database using Node 22's native `node:sqlite` engine (**zero npm packages to install**).
-* **Client-Side Fallback**: If running without a server (standalone HTML/APK), it automatically uses device `localStorage`.
+### 💾 6. 100% Local-First & Private Persistence
+* **Zero npm Packages Required**: The entire web app runs purely on browser standards.
+* **Browser LocalStorage**: Works out of the box with zero database setup required.
+* **Optional Node.js + SQLite Backend**: For users who want a local desktop database file, an optional `server.js` using Node's native `node:sqlite` is included.
 * **100% Privacy Focused**: No telemetry, no third-party tracking, and no external accounts. Your personal wellness logs stay on your device.
 
 ---
@@ -123,59 +125,56 @@ Download pre-built standalone packages directly from **[GitHub Releases](../../r
 
 ---
 
-## ⚡ 1-Click Launchers (For PC Users & Developers)
+## ⚡ How to Run
 
-* **`start.bat`**: Double-click to start ClimaCrave. It automatically verifies if Node.js is installed. If missing, it will **automatically download a portable Node.js runtime** from nodejs.org so anyone can run it with one click!
-* **`stop.bat`**: Double-click to cleanly terminate all background server processes running on port 3000.
+### Method 1: Instant Browser Launch (Zero Installation Required!)
+Simply double-click **`index.html`** in any web browser (Chrome, Edge, Firefox, Brave, Safari).
+* 0 installations needed.
+* 0 npm commands needed.
+* 0 server configuration needed.
+* Everything works immediately using browser local storage!
 
 ---
 
-## 🏗️ Clean Architecture Overview
+### Method 2: 1-Click Windows Launcher
+Double-click **`start.bat`** on Windows.
+* Opens ClimaCrave directly in a dedicated desktop window.
+* When finished, double-click **`stop.bat`** to exit.
+
+---
+
+### Method 3: Optional Local Node Server (For Developers)
+If you wish to use the optional local SQLite database backend:
+```bash
+node server.js
+```
+Then open `http://localhost:3000`. Zero external npm packages required!
+
+---
+
+## 🏗️ Architecture Overview
 
 ```text
 ClimaCrave/
-├── index.html              # Core application entry point & semantic markup
+├── index.html              # Pure HTML5 application entry point
 ├── css/
 │   └── style.css           # Glassmorphism design system & responsive layout
 ├── js/
-│   └── script.js           # Client application logic, recommendation engine & food database
+│   └── script.js           # Vanilla JavaScript app logic, weather engine & food database
 ├── ml/
 │   ├── model.json          # Pre-trained weather-food scoring weights
-│   ├── train_model.py      # Python model training script (scikit-learn / numpy)
+│   ├── train_model.py      # Optional Python model training script (scikit-learn / numpy)
 │   └── README.md           # Machine learning documentation
-├── server.js               # Zero-dependency Node.js server with native SQLite persistence
-├── package.json            # Application metadata & engine specifications
-├── requirements.txt        # Runtime and optional Python dependencies documentation
-├── start.bat               # 1-click launcher with auto Node.js downloader
-├── stop.bat                # 1-click server stopper
+├── server.js               # Optional local server with native SQLite persistence
+├── package.json            # Application metadata
+├── requirements.txt        # Runtime & optional Python dependencies notes
+├── start.bat               # 1-click launcher for Windows
+├── stop.bat                # 1-click stopper for Windows
 ├── .gitignore              # Clean Git ignore rules (binaries & media excluded)
 ├── .gitattributes          # Git line ending normalization
 ├── LICENSE                 # MIT Open-Source License
 └── README.md               # Master documentation
 ```
-
----
-
-## 🚀 Running From Source (Step-by-Step)
-
-### Prerequisites
-* **[Node.js 22.5+](https://nodejs.org/)** (Uses Node's built-in `node:sqlite`, zero npm dependencies required!)
-* Any modern web browser (Edge, Chrome, Firefox, Safari)
-
-### Quick Start
-```bash
-# 1. Clone the repository
-git clone https://github.com/Lakshyadev247/ClimaCrave.git
-cd ClimaCrave
-
-# 2. Start the local server
-node server.js
-
-# 3. Open in your browser
-# Navigate to http://localhost:3000
-```
-
-*(Or simply double-click **`start.bat`** on Windows!)*
 
 ---
 
