@@ -1,13 +1,38 @@
 # ClimaCrave 🌤️🍽️
 ### Weather-Adaptive Food Recommendation System & Personal Nutrition Companion
 
-[![Version: v3.4](https://img.shields.io/badge/Version-v3.4%20(Production%20Release)-orange?style=for-the-badge)](https://github.com/Lakshyadev247/ClimaCrave/releases)
+[![Status: Beta](https://img.shields.io/badge/Status-Beta%20(Active%20Testing)-orange?style=for-the-badge)](https://github.com/Lakshyadev247/ClimaCrave/releases)
+[![Version: v3.4-beta](https://img.shields.io/badge/Version-v3.4--beta-blue?style=for-the-badge)](https://github.com/Lakshyadev247/ClimaCrave/releases)
 [![Platform: Android & Windows & Web](https://img.shields.io/badge/Platform-Android%20%7C%20Windows%20%7C%20Web-blue?style=for-the-badge)](https://github.com/Lakshyadev247/ClimaCrave/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 [![Node.js: 22+](https://img.shields.io/badge/Node.js-22%2B%20Native%20SQLite-339933?style=for-the-badge&logo=nodedotjs)](https://nodejs.org)
 [![Frontend: Glassmorphic UI](https://img.shields.io/badge/Frontend-HTML5%20%7C%20CSS3%20%7C%20JS-f7df1e?style=for-the-badge&logo=javascript)](https://developer.mozilla.org)
 
-> 🌟 **ClimaCrave v3.4** is a modern, responsive cross-platform food recommendation application that dynamically tailors meal suggestions to your real-time local weather. Whether it's a hot sunny afternoon calling for hydrating smoothies and chilled salads, or a chilly rainy evening demanding comforting soups and warm stews, ClimaCrave combines atmospheric metrics with smart nutrition tracking to deliver the perfect meal at the perfect time.
+> ⚠️ **Project Status: Public Beta (Active Testing & Development)**  
+> ClimaCrave is currently in public Beta. It dynamically pairs atmospheric metrics (temperature, humidity, precipitation, and sky conditions) with smart food recommendations. Available as a **standalone Android APK**, **standalone Windows Desktop app**, or **local lightweight web app with zero external npm dependencies**. Community feedback and suggestions are warmly welcomed!
+
+---
+
+## 📸 UI Showcase (Desktop & Mobile)
+
+| 💻 Windows Desktop (Standalone EXE) | 📱 Android Phone (Standalone APK) |
+| :---: | :---: |
+| ![Desktop Weather & Recommendations](screenshots/02-desktop-main-weather.png) | ![Mobile Weather Tab](screenshots/06-mobile-weather-tab.png) |
+| *Live weather card, auto-location, and hybrid food recommendations* | *Touch-friendly mobile UI with glassmorphic bottom navigation* |
+
+<details>
+<summary><b>🔍 Click to view more screenshots (Food Details, Daily Tracker & Settings)</b></summary>
+
+| Feature | Preview |
+| :--- | :---: |
+| **🍽️ Food Details & Nutritional Breakdown** | ![Food Details](screenshots/04-desktop-food-detail.png) |
+| **📊 Food Diary & Daily Hydration Tracker** | ![Food Tracker](screenshots/05-desktop-tracker.png) |
+| **⚙️ Settings & Weather Provider Configuration** | ![Settings](screenshots/03-desktop-settings-api.png) |
+| **📱 Mobile Food Diary & Calorie Tracker Tab** | ![Mobile Tracker](screenshots/07-mobile-tracker-tab.png) |
+| **📱 Mobile Saved Favorites & History Tab** | ![Mobile Saved](screenshots/08-mobile-saved-tab.png) |
+| **📱 Mobile Settings & Clean Glass Controls** | ![Mobile Settings](screenshots/09-mobile-settings-tab.png) |
+
+</details>
 
 ---
 
@@ -75,6 +100,7 @@ ClimaCrave/
 │   ├── model.json          # Pre-trained weather-food scoring weights
 │   ├── train_model.py      # Python model training script (scikit-learn / numpy)
 │   └── README.md           # Machine learning documentation
+├── screenshots/            # UI showcase gallery for desktop and mobile
 ├── server.js               # Zero-dependency Node.js server with native SQLite persistence
 ├── package.json            # Application metadata & engine specifications
 ├── requirements.txt        # Runtime and optional Python dependencies documentation
