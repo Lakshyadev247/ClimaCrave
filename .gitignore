@@ -1,0 +1,36 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environments
+.venv/
+env/
+venv/
+ENV/
+
+# Dependencies & portable runtimes
+node_modules/
+.bin/
+
+# Local databases & user state (created automatically on server run)
+climacrave.sqlite
+*.sqlite
+*.db
+
+# Standalone release binaries (uploaded directly to GitHub Releases)
+releases/
+*.zip
+*.apk
+*.exe
+
+# IDE & OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs & temp
+*.log
+npm-debug.log*

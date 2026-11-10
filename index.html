@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ClimaCrave — Weather-Adaptive Food Recommendation System</title>
+<link rel="stylesheet" href="css/style.css">
+<style id="cloudStyle"></style>
+</head>
+<body>
+
+<div class="scene">
+  <div class="sky afternoon-default" id="sky"></div>
+  <div class="stars" id="stars"></div>
+  <div class="sun-rays hidden" id="sunRays"></div>
+  <div class="sun hidden" id="sun"></div>
+  <div class="moon hidden" id="moon"></div>
+  <div class="cloud c1"></div>
+  <div class="cloud c2"></div>
+  <div class="cloud c3"></div>
+  <div class="cloud c4"></div>
+  <div class="rain-layer" id="rainLayer"></div>
+  <div class="snow-layer" id="snowLayer"></div>
+  <div class="fog-overlay" id="fogOverlay"></div>
+  <div class="heat-shimmer" id="heatShimmer"></div>
+  <div class="lightning" id="lightning"></div>
+  <div class="landscape" id="landscape">
+    <div class="hill h1"></div>
+    <div class="hill h2"></div>
+    <div class="hill h3"></div>
+    <div class="hill h4"></div>
+  </div>
+</div>
+<div class="scrim"></div>
+
+<div class="auth-overlay hidden" id="authOverlay">
+  <div class="auth-card">
+    <div class="auth-logo">🍽️ <span>ClimaCrave</span></div>
+    <div class="auth-tabs">
+      <button type="button" class="auth-tab active" id="tabLogin" onclick="showAuthTab('login')">Log In</button>
+      <button type="button" class="auth-tab" id="tabRegister" onclick="showAuthTab('register')">Sign Up</button>
+    </div>
+
+    <form id="loginForm" class="auth-form" onsubmit="return loginUser(event)">
+      <div class="field"><label>Username</label><input type="text" id="loginUsername" autocomplete="username" required></div>
+      <div class="field"><label>Password</label><input type="password" id="loginPassword" autocomplete="current-password" required></div>
+      <div class="auth-error" id="loginError"></div>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Log In</button>
+      <div class="auth-switch"><a onclick="showAuthTab('forgot')">Forgot password?</a></div>
+    </form>
+
+    <form id="registerForm" class="auth-form" style="display:none" onsubmit="return registerUser(event)">
+      <div class="auth-title">Create an account and pick two security questions — you'll use them to recover your password if you forget it.</div>
+      <div class="field"><label>Username</label><input type="text" id="regUsername" autocomplete="username" required></div>
+      <div class="field"><label>Password</label><input type="password" id="regPassword" autocomplete="new-password" required minlength="6"></div>
+      <div class="field"><label>Confirm Password</label><input type="password" id="regPasswordConfirm" autocomplete="new-password" required minlength="6"></div>
+      <div class="field"><label>Security Question 1</label><select id="secQ1"></select></div>
+      <div class="field"><label>Answer 1</label><input type="text" id="secA1" required></div>
+      <div class="field"><label>Security Question 2</label><select id="secQ2"></select></div>
+      <div class="field"><label>Answer 2</label><input type="text" id="secA2" required></div>
+      <div class="auth-error" id="registerError"></div>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Create Account</button>
+      <div class="auth-switch">Already have an account? <a onclick="showAuthTab('login')">Log in</a></div>
+    </form>
+
+    <form id="forgotFindForm" class="auth-form" style="display:none" onsubmit="return forgotFindUser(event)">
+      <div class="auth-title">Enter your username to answer your security questions and reset your password.</div>
+      <div class="field"><label>Username</label><input type="text" id="forgotUsername" required></div>
+      <div class="auth-error" id="forgotFindError"></div>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Next</button>
+      <div class="auth-switch"><a onclick="showAuthTab('login')">Back to Log In</a></div>
+    </form>
+
+    <form id="forgotResetForm" class="auth-form" style="display:none" onsubmit="return forgotResetPassword(event)">
+      <div class="field"><label id="forgotQ1Label">Security Question 1</label><input type="text" id="forgotA1" required></div>
+      <div class="field"><label id="forgotQ2Label">Security Question 2</label><input type="text" id="forgotA2" required></div>
+      <div class="field"><label>New Password</label><input type="password" id="forgotNewPassword" required minlength="6"></div>
+      <div class="field"><label>Confirm New Password</label><input type="password" id="forgotNewPasswordConfirm" required minlength="6"></div>
+      <div class="auth-error" id="forgotResetError"></div>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Reset Password</button>
+      <div class="auth-switch"><a onclick="showAuthTab('login')">Back to Log In</a></div>
+    </form>
+  </div>
+</div>
+
+<div id="appMain" style="display:none">
+<header>
+  <div class="brand">
+    <div class="logo">🍽️</div>
+    <div><h1>ClimaCrave</h1><div class="tag">Weather Food Recommender</div></div>
+  </div>
+  <div class="header-right">
+    <span id="apiStatus" class="api-status off">● API Not Configured</span>
+    <span class="user-chip" id="userChip"></span>
+    <button class="btn btn-ghost" onclick="openTracker()" id="trackerBtn" aria-label="Open Tracker">
+      <span class="btn-glass-icon" aria-hidden="true">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+          <defs>
+            <linearGradient id="trkG1" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#4ad6ff" stop-opacity="0.95"/>
+              <stop offset="100%" stop-color="#4ad6ff" stop-opacity="0.35"/>
+            </linearGradient>
+            <linearGradient id="trkG2" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#ff7849" stop-opacity="1"/>
+              <stop offset="100%" stop-color="#ffb547" stop-opacity="0.4"/>
+            </linearGradient>
+            <linearGradient id="trkG3" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#39d98a" stop-opacity="0.95"/>
+              <stop offset="100%" stop-color="#39d98a" stop-opacity="0.35"/>
+            </linearGradient>
+          </defs>
+          <rect x="3" y="13" width="4.5" height="8" rx="2" fill="url(#trkG1)" stroke="rgba(255,255,255,0.5)" stroke-width="0.75"/>
+          <rect x="9.75" y="4" width="4.5" height="17" rx="2" fill="url(#trkG2)" stroke="rgba(255,255,255,0.6)" stroke-width="0.75"/>
+          <rect x="16.5" y="9" width="4.5" height="12" rx="2" fill="url(#trkG3)" stroke="rgba(255,255,255,0.5)" stroke-width="0.75"/>
+        </svg>
+      </span>
+      <span>Tracker</span>
+    </button>
+    <button class="btn btn-ghost" onclick="openSettings()" id="settingsBtn" aria-label="Open Settings">
+      <span class="btn-glass-icon" aria-hidden="true">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+          <circle cx="12" cy="12" r="3"/>
+        </svg>
+      </span>
+      <span>Settings</span>
+    </button>
+  </div>
+</header>
+
+<section class="search-section">
+  <div class="search-wrap">
+    <div class="search-input">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" id="cityInput" placeholder="Search any city worldwide..." onkeydown="if(event.key==='Enter')getWeather()">
+      <button type="button" class="btn-locate" id="locateBtn" onclick="detectLocation()" title="Auto-detect current location" aria-label="Auto-detect current location">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v3M12 19v3M2 12h3M19 12h3"></path>
+        </svg>
+      </button>
+    </div>
+    <button class="btn btn-primary" onclick="getWeather()" id="getBtn">Get Weather</button>
+  </div>
+</section>
+
+<section class="w-hero">
+  <div id="heroEmpty" class="w-hero-empty">
+    <div class="icon">🌤️</div>
+    <p>Enter a city above and click <b>Get Weather</b>.<br>The system will fetch live weather and recommend foods instantly.</p>
+    <div style="margin-top:18px">
+      <button type="button" class="btn btn-ghost" onclick="detectLocation()" id="heroLocateBtn" style="gap:8px">
+        <span>📍</span> Auto-detect My Location
+      </button>
+    </div>
+  </div>
+  <div id="heroDisplay" style="display:none">
+    <div class="w-location">
+      <div class="w-loc-name-row"><div class="w-loc-name" id="wLocName">--</div><button class="favorite-city-btn" id="favoriteCityBtn" onclick="toggleFavoriteCity()" title="Set this city as your default">☆</button></div>
+      <div class="w-loc-sub" id="wLocSub">Weather Conditions</div>
+      <div class="w-updated" id="wUpdated"></div>
+    </div>
+    <div class="w-main-row">
+      <div class="w-left">
+        <div class="w-icon-xl" id="wIconXl"><div class="wi3d"><div class="wi3d-sun"></div></div></div>
+        <div class="w-temp-xl" id="wTempXl">--<span class="unit">°C</span></div>
+        <div class="w-hilo" id="wHiLo"></div>
+        <div class="w-temp-badge" id="wBadge"></div>
+      </div>
+      <div class="w-right">
+        <div class="w-d-row"><span class="lbl">🌡️ Feels Like</span><span class="val" id="wFeels">--</span></div>
+        <div class="w-d-row"><span class="lbl">📍 Condition</span><span class="val" id="wCond" style="text-transform:capitalize">--</span></div>
+        <div class="w-d-row"><span class="lbl">🌧️ Rain</span><span class="val" id="wRain">--</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hourly-strip" id="hourlySection" style="display:none">
+  <div class="hourly-title">Hourly Forecast</div>
+  <div class="hourly-scroll" id="hourlyScroll"></div>
+</section>
+
+<section class="gauges-section" id="gaugesSection" style="display:none">
+  <div class="gauges-title">Weather Parameters</div>
+  <div class="gauges-grid" id="gaugesGrid"></div>
+</section>
+
+<section class="food-section">
+  <div class="food-header">
+    <div><div class="food-title">🍴 Food Recommendations</div><div class="food-sub">Weather-adaptive suggestions using your selected recommendation engine</div></div>
+    <span class="food-sub" id="recoCount"></span>
+  </div>
+  <div class="reco-list" id="recoList" style="display:none"></div>
+  <div class="match-section" id="matchSection" style="display:none"></div>
+  <div class="reco-empty" id="recoEmpty">
+    <div class="icon">🍽️</div>
+    <p>Food recommendations will appear here once weather data is available.</p>
+  </div>
+</section>
+
+<div class="modal-overlay" id="settingsModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h3 class="modal-title-with-icon">
+        <span class="modal-head-icon" aria-hidden="true">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+        </span>
+        <span>Settings</span>
+      </h3>
+      <button class="btn-icon" onclick="closeSettings()">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <div class="settings-cat">
+        <div class="settings-cat-title">👤 Account</div>
+        <div class="account-row">
+          <div class="acct-avatar" id="acctAvatar" aria-hidden="true">👤</div>
+          <div class="acct-meta">
+            <div class="acct-name" id="settingsUserLabel">--</div>
+            <div class="acct-sub" id="acctSub">Signed in · data saved on this device</div>
+          </div>
+          <button class="btn btn-ghost acct-logout" onclick="logoutUser()">🚪 Logout</button>
+        </div>
+      </div>
+
+      <div class="settings-cat">
+        <div class="settings-cat-title">🌦️ Weather API</div>
+        <div class="toggle-row"><div><div class="tl">Enable Live Weather API</div><div class="ts">Turn off to use manual weather input only</div></div><label class="switch"><input type="checkbox" id="apiEnabled" checked><span class="slider"></span></label></div>
+        <div class="field"><label>Weather API Provider</label><select id="apiProvider" onchange="updateProviderInfo()"><option value="openmeteo" selected>Open-Meteo (Default · Free, No Key Required)</option><option value="openweathermap">OpenWeatherMap</option><option value="weatherapi">WeatherAPI.com</option><option value="tomorrow">Tomorrow.io</option><option value="visualcrossing">Visual Crossing</option><option value="custom">Custom API (Advanced)</option></select><div class="hint" id="providerHint"></div></div>
+        <div class="field" id="apiKeyWrap" style="display:none"><label>API Key</label><input type="password" id="apiKey" placeholder="Paste your API key here"><div class="hint">Your key is stored locally in your browser only. It is never sent to any server except the weather provider.</div></div>
+        <div class="field" id="customApiField" style="display:none"><label>Custom API URL Template</label><input type="text" id="customApiUrl" placeholder="https://api.example.com/weather?q={city}&key={key}"><div class="hint">Use <code>{city}</code> and <code>{key}</code> as placeholders. Response must be JSON.</div><label style="margin-top:10px;display:block">JSON Field Mapping (advanced)</label><textarea id="customMapping" placeholder='{"temp":"main.temp","humidity":"main.humidity","wind":"wind.speed","condition":"weather[0].main","desc":"weather[0].description","city":"name","country":"sys.country"}' style="font-family:'Courier New',monospace;font-size:11px"></textarea></div>
+        <div class="help-block"><h4>📖 Weather API Providers</h4><ol><li><b>Open-Meteo (Default):</b> Completely free and open-source public API. No key or registration required!</li><li><b>OpenWeatherMap:</b> Sign up at openweathermap.org → profile → API keys → copy. Free: 1000 calls/day.</li><li><b>WeatherAPI.com:</b> Sign up at weatherapi.com → dashboard → API Key. Free: 1M calls/month.</li><li><b>Tomorrow.io:</b> Sign up at tomorrow.io → developer → copy key. Free: 500 calls/day.</li><li><b>Visual Crossing:</b> Sign up at visualcrossing.com → account → API keys. Free: 1000 calls/day.</li></ol></div>
+      </div>
+
+      <div class="settings-cat">
+        <div class="settings-cat-title">🎛️ Preferences</div>
+        <div class="toggle-row"><div><div class="tl">Auto-detect Location on Launch</div><div class="ts">Automatically detect and show weather for your location on startup (if no default city is set)</div></div><label class="switch"><input type="checkbox" id="autoLocation" checked><span class="slider"></span></label></div>
+        <div class="field"><label>Temperature Unit</label><div class="units-row"><input type="radio" name="unit" id="u-c" value="metric" checked><label for="u-c">°C (Celsius)</label><input type="radio" name="unit" id="u-f" value="imperial"><label for="u-f">°F (Fahrenheit)</label></div></div>
+        <div class="field"><label>Time Format</label><div class="time-format-row"><input type="radio" name="timefmt" id="tf-12" value="12h" checked><label for="tf-12">12 Hour (1:30 PM)</label><input type="radio" name="timefmt" id="tf-24" value="24h"><label for="tf-24">24 Hour (13:30)</label></div></div>
+        <div class="field"><label>Recommendation Engine</label><select id="recommendationMode">
+            <option value="rules">Food Rules — existing scoring</option>
+            <option value="ml">ML Model — learned from food + weather data</option>
+            <option value="hybrid">Hybrid — 65% Rules + 35% ML</option>
+          </select><div class="hint">Choose how ClimaCrave ranks food. The lightweight ML model runs locally in the browser; no LLM or paid ML API is required.</div></div>
+        <div class="field"><label>Number of Recommendations</label><select id="recoCount_setting"><option value="5">Top 5</option><option value="8" selected>Top 8</option><option value="10">Top 10</option><option value="15">Top 15</option></select></div>
+      </div>
+
+      <div class="settings-cat">
+
+        <div class="field"><label>Food Search API</label>
+          <select id="foodApiSelect" onchange="toggleFoodApiFields()">
+            <option value="openfoodfacts">Open Food Facts (Free, no key needed)</option>
+            <option value="edamam">Edamam (Free key required)</option>
+            <option value="usda">USDA FoodData Central (Free key required)</option>
+          </select>
+          <div class="hint">Choose which API to use when searching for custom foods in the Tracker.</div>
+        </div>
+        <div class="field" id="edamamFieldsWrap"><label>Edamam App ID</label><input type="text" id="edamamAppId" placeholder="Your Edamam app_id"></div>
+        <div class="field" id="edamamKeyWrap"><label>Edamam App Key</label><input type="password" id="edamamAppKey" placeholder="Your Edamam app_key"><div class="hint">Free keys at developer.edamam.com (Food Database API). Stored locally in your browser.</div></div>
+        <div class="field" id="usdaKeyWrap" style="display:none"><label>USDA API Key</label><input type="password" id="usdaApiKey" placeholder="Your USDA API key"><div class="hint">Free keys at fdc.nal.usda.gov/api-key-signup.html. Stored locally in your browser.</div></div>
+      </div>
+
+      <div class="settings-cat">
+        <div class="settings-cat-title">🔧 Developer Tools</div>
+        <div class="help-block" style="margin-top:0">
+          <h4>Manual Override (Test Mode)</h4>
+          <div style="font-size:11px;color:#7d8aa8;margin-bottom:10px">Test the ML engine without an API key by entering weather manually.</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-bottom:8px">
+            <input type="number" id="mTemp" placeholder="Temp" step="0.1" style="background:#0f1424;border:1px solid #2d3856;border-radius:8px;padding:9px 10px;color:#e8ecf4;font-size:12px;font-family:inherit;outline:none">
+            <input type="number" id="mHumid" placeholder="Humidity %" step="1" style="background:#0f1424;border:1px solid #2d3856;border-radius:8px;padding:9px 10px;color:#e8ecf4;font-size:12px;font-family:inherit;outline:none">
+            <input type="number" id="mWind" placeholder="Wind km/h" step="0.1" style="background:#0f1424;border:1px solid #2d3856;border-radius:8px;padding:9px 10px;color:#e8ecf4;font-size:12px;font-family:inherit;outline:none">
+          </div>
+          <select id="mCond" style="width:100%;padding:9px 10px;background:#0f1424;border:1px solid #2d3856;border-radius:8px;color:#e8ecf4;font-size:12px;font-family:inherit;outline:none;margin-bottom:8px">
+            <option value="">— Weather condition —</option>
+            <option value="Clear">Clear / Sunny</option><option value="Clouds">Cloudy</option><option value="Rain">Rainy</option>
+            <option value="Drizzle">Light Drizzle</option><option value="Thunderstorm">Thunderstorm</option><option value="Snow">Snowy</option>
+            <option value="Mist">Misty</option><option value="Fog">Foggy</option><option value="Haze">Hazy</option><option value="Dust">Dusty</option>
+          </select>
+          <select id="mTimeOfDay" style="width:100%;padding:9px 10px;background:#0f1424;border:1px solid #2d3856;border-radius:8px;color:#e8ecf4;font-size:12px;font-family:inherit;outline:none;margin-bottom:8px">
+            <option value="">— Auto (use real time) —</option>
+            <option value="morning">🌅 Morning</option>
+            <option value="afternoon">☀️ Afternoon</option>
+            <option value="evening">🌇 Evening</option>
+            <option value="night">🌙 Night</option>
+          </select>
+          <div style="display:flex;gap:8px">
+            <button class="btn btn-primary" style="flex:1;font-size:12px;padding:9px 14px" onclick="manualWeather()">Apply & Recommend</button>
+            <button class="btn btn-ghost" style="font-size:12px;padding:9px 14px;color:#fff" onclick="toggleDebug()">🐛 Debug</button>
+          </div>
+          <div class="debug" id="debugPanel" style="margin-top:8px"></div>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-foot"><button class="btn btn-ghost" onclick="closeSettings()">Cancel</button><button class="btn btn-primary" onclick="saveSettings()">💾 Save Settings</button></div>
+  </div>
+</div>
+
+
+<div class="modal-overlay" id="trackerModal">
+  <div class="modal" style="max-width:520px" role="dialog" aria-modal="true" aria-label="Tracker">
+    <div class="modal-head">
+      <h3 class="modal-title-with-icon">
+        <span class="modal-head-icon" aria-hidden="true">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+            <rect x="3" y="13" width="4.5" height="8" rx="2" fill="url(#trkG1)" stroke="rgba(255,255,255,0.5)" stroke-width="0.75"/>
+            <rect x="9.75" y="4" width="4.5" height="17" rx="2" fill="url(#trkG2)" stroke="rgba(255,255,255,0.6)" stroke-width="0.75"/>
+            <rect x="16.5" y="9" width="4.5" height="12" rx="2" fill="url(#trkG3)" stroke="rgba(255,255,255,0.5)" stroke-width="0.75"/>
+          </svg>
+        </span>
+        <span>Tracker</span>
+      </h3>
+      <button class="btn-icon" onclick="closeTracker()" aria-label="Close tracker">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="trk-tabs" role="tablist" aria-label="Tracker sections">
+        <button type="button" role="tab" aria-selected="true" aria-controls="trkPane-diary" class="trk-tab active" id="trkTab-diary" onclick="switchTrackerTab('diary')">Diary</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="trkPane-water" class="trk-tab" id="trkTab-water" onclick="switchTrackerTab('water')">Water</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="trkPane-stats" class="trk-tab" id="trkTab-stats" onclick="switchTrackerTab('stats')">Stats</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="trkPane-goals" class="trk-tab" id="trkTab-goals" onclick="switchTrackerTab('goals')">Goals</button>
+      </div>
+
+      <div id="trkPane-diary" role="tabpanel" aria-labelledby="trkTab-diary">
+        <div class="trk-date" id="diaryDate">--</div>
+        <div id="diaryList"></div>
+        <div class="diary-total" id="diaryTotal"></div>
+        <button class="btn btn-ghost" style="width:100%;justify-content:center;margin-top:14px;color:#e8ecf4" onclick="toggleCustomSearch()">🔍 Search Custom Food</button>
+        <div class="cs-box" id="customSearchBox" style="display:none">
+          <div class="cs-row">
+            <label for="customSearchInput" class="sr-only">Food name</label>
+            <input type="text" id="customSearchInput" placeholder="e.g. grilled chicken breast" onkeydown="if(event.key==='Enter')searchCustomFood()">
+            <button class="btn btn-primary" style="font-size:12px;padding:10px 16px" onclick="searchCustomFood()">Search</button>
+          </div>
+          <div id="customSearchResults"></div>
+        </div>
+      </div>
+
+      <div id="trkPane-water" role="tabpanel" aria-labelledby="trkTab-water" style="display:none">
+        <div id="waterContent"></div>
+      </div>
+
+      <div id="trkPane-stats" role="tabpanel" aria-labelledby="trkTab-stats" style="display:none">
+        <div id="statsDateSelector"></div>
+        <div id="statsBody"></div>
+      </div>
+
+      <div id="trkPane-goals" role="tabpanel" aria-labelledby="trkTab-goals" style="display:none">
+        <div id="goalsBody"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="portionModal">
+  <div class="modal" style="max-width:440px" role="dialog" aria-modal="true" aria-label="Log food portion">
+    <div class="modal-head"><h3>➕ Log Food</h3><button class="btn-icon" onclick="closePortionPopup()" aria-label="Close">✕</button></div>
+    <div class="modal-body">
+      <div class="portion-head">
+        <div class="portion-photo" id="portionPhoto"></div>
+        <div>
+          <div class="portion-title" id="portionName">--</div>
+          <div class="portion-serving" id="portionServing"></div>
+        </div>
+      </div>
+      <div class="trk-tabs" role="tablist" aria-label="Portion entry mode">
+        <button type="button" role="tab" aria-selected="true" aria-controls="portionPane-portion" class="trk-tab active" id="portionTab-portion" onclick="setPortionMode('portion')">By Portion</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="portionPane-grams" class="trk-tab" id="portionTab-grams" onclick="setPortionMode('grams')">By Grams</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="portionPane-quick" class="trk-tab" id="portionTab-quick" onclick="setPortionMode('quick')">Quick</button>
+      </div>
+      <div id="portionPane-portion" role="tabpanel" aria-labelledby="portionTab-portion">
+        <div class="stepper">
+          <button type="button" onclick="bumpPortion(-0.5)" aria-label="Decrease portion">−</button>
+          <label for="portionMult" class="sr-only">Number of servings</label>
+          <input type="number" id="portionMult" value="1" min="0.1" step="0.5" oninput="updatePortionCalc()">
+          <button type="button" onclick="bumpPortion(0.5)" aria-label="Increase portion">+</button>
+        </div>
+        <div class="quick-row">
+          <button type="button" class="quick-btn" onclick="setPortionMult(0.5)">0.5x</button>
+          <button type="button" class="quick-btn" onclick="setPortionMult(1)">1x</button>
+          <button type="button" class="quick-btn" onclick="setPortionMult(1.5)">1.5x</button>
+          <button type="button" class="quick-btn" onclick="setPortionMult(2)">2x</button>
+        </div>
+      </div>
+      <div id="portionPane-grams" role="tabpanel" aria-labelledby="portionTab-grams" style="display:none">
+        <div class="stepper">
+          <button type="button" onclick="bumpGrams(-25)" aria-label="Decrease grams">−</button>
+          <label for="portionGrams" class="sr-only">Weight in grams</label>
+          <input type="number" id="portionGrams" value="200" min="1" step="25" oninput="updatePortionCalc()">
+          <button type="button" onclick="bumpGrams(25)" aria-label="Increase grams">+</button>
+        </div>
+        <div class="trk-note">Enter the weight you actually ate, in grams.</div>
+      </div>
+      <div id="portionPane-quick" role="tabpanel" aria-labelledby="portionTab-quick" style="display:none">
+        <div class="quick-row">
+          <button type="button" class="quick-btn" onclick="setQuickPortion(150)">1 Bowl<br><span style="font-size:10px;opacity:.6">150g</span></button>
+          <button type="button" class="quick-btn" onclick="setQuickPortion(225)">1.5 Bowls<br><span style="font-size:10px;opacity:.6">225g</span></button>
+          <button type="button" class="quick-btn" onclick="setQuickPortion(300)">2 Bowls<br><span style="font-size:10px;opacity:.6">300g</span></button>
+        </div>
+        <div class="quick-row" style="margin-top:8px">
+          <button type="button" class="quick-btn" onclick="setQuickPortion(100)">1 Katori<br><span style="font-size:10px;opacity:.6">100g</span></button>
+          <button type="button" class="quick-btn" onclick="setQuickPortion(200)">1 Plate<br><span style="font-size:10px;opacity:.6">200g</span></button>
+          <button type="button" class="quick-btn" onclick="setQuickPortion(250)">1 Glass<br><span style="font-size:10px;opacity:.6">250ml</span></button>
+        </div>
+        <div class="stepper" style="margin-top:10px">
+          <button type="button" onclick="bumpQuickPortion(-25)" aria-label="Decrease">-</button>
+          <label for="quickGrams" class="sr-only">Custom amount in grams</label>
+          <input type="number" id="quickGrams" value="150" min="10" step="25" oninput="updatePortionCalc()">
+          <button type="button" onclick="bumpQuickPortion(25)" aria-label="Increase">+</button>
+        </div>
+        <div class="trk-note">Pick a preset or type your own amount. 1 bowl = 150g.</div>
+      </div>
+      <div class="portion-result" id="portionResult" aria-live="polite"></div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" onclick="closePortionPopup()">Cancel</button>
+      <button class="btn btn-primary" id="portionConfirmBtn" onclick="confirmPortion()">✓ Confirm</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<footer><b>ClimaCrave</b> — Weather-Adaptive Food Recommendation System using Machine Learning<br>Runs entirely in your browser · Your API key never leaves your device</footer>
+</div>
+
+<script src="js/script.js"></script>
+<div class="modal-overlay" id="foodDetailModal">
+  <div class="modal" style="max-width:520px">
+    <div class="modal-head"><h3>🍽️ Food Details</h3><button class="btn-icon" onclick="closeFoodDetail()">✕</button></div>
+    <div class="modal-body" id="foodDetailContent"></div>
+  </div>
+</div>
+</body>
+</html>

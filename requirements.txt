@@ -1,0 +1,19 @@
+# ClimaCrave Application Requirements
+# ==================================
+# 
+# 1. Primary Runtime:
+#    Node.js >= 22.5.0
+#    - Uses built-in node:sqlite (native zero-dependency SQLite database engine)
+#    - Uses built-in node:http and node:fs
+#    - Zero external npm packages required!
+#    - NOTE: 'start.bat' automatically checks for Node.js and auto-downloads
+#      a portable runtime if missing, so anyone can run the app with one click!
+#
+# 2. Browser / Display:
+#    Any modern HTML5 web browser (Microsoft Edge, Google Chrome, Mozilla Firefox, Brave, Safari)
+#    - Edge & Chrome automatically launch in dedicated desktop application window mode.
+#
+# 3. Optional - ML Model Retraining (only needed if running ml/train_model.py):
+#    Python >= 3.10
+#    numpy>=1.24.0
+#    scikit-learn>=1.2.0

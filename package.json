@@ -1,0 +1,12 @@
+{
+  "name": "climacrave",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ClimaCrave with a local Node.js + SQLite persistence backend",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=22.5.0"
+  }
+}
