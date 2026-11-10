@@ -1,0 +1,4 @@
+# Ensure media assets are stored as binary
+*.png binary
+*.jpg binary
+*.jpeg binary
